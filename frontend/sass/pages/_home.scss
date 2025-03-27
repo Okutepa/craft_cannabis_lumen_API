@@ -1,0 +1,15 @@
+@use '../abstracts' as *;
+
+body {
+    color: white;
+}
+
+// Tablet styles
+@media (min-width: 769px) {
+    body {}
+}
+
+// Desktop styles
+@media (min-width: 1025px) {
+    body {}
+}

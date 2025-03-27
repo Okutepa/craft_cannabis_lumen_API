@@ -1,0 +1,12 @@
+# Lumen dependencies
+backend/craft-cannabis-api/vendor/
+backend/craft-cannabis-api/composer.lock
+
+# Node modules (if you add any in the frontend)
+frontend/node_modules/
+
+# Compiled SASS files (optional, if you want to commit styles.css)
+# frontend/styles.css
+
+# Environment files (we’ll include .env for the assignment, so don’t ignore it)
+# backend/craft-cannabis-api/.env

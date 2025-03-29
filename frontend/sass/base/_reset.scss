@@ -1,11 +1,46 @@
 @use '../abstracts' as *;
 
+// Base reset styles
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html,
 body {
-    overflow-x: hidden;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    color: $text-color;
+    background-color: $light-color;
+    height: 100%;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
 }

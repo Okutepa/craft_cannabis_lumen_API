@@ -1,5 +1,24 @@
 @use 'fonts';
 
-$primary-color: #286735;
-$secondary-color: #0A0A0A;
-$transition-speed: 0.3s;
+// Colors
+$primary-color: #2C574B;
+$secondary-color: #1E3932;
+$text-color: #333333;
+$light-color: #F8F9F4;
+$accent-color: #4A8576;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+
+// Breakpoints
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-large: 1200px;
+
+// Container
+$container-width: 1200px;

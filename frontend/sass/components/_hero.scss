@@ -1,0 +1,46 @@
+@use '../abstracts' as *;
+
+.hero {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet-up {
+        flex-direction: row;
+        min-height: 80vh;
+    }
+
+    .hero-text {
+        padding: $spacing-xl;
+        background-color: $light-color;
+        @include flex-column;
+        justify-content: center;
+
+        @include tablet-up {
+            flex: 1;
+            padding: $spacing-xl $spacing-xl $spacing-xl 10%;
+        }
+
+        h1 {
+            color: $primary-color;
+            margin-bottom: $spacing-lg;
+        }
+
+        p {
+            font-size: $font-size-lg;
+            max-width: 80%;
+            color: $secondary-color;
+        }
+    }
+
+    .hero-image {
+        min-height: 300px;
+        background-image: url('../images/hero.jpeg');
+        background-size: cover;
+        background-position: center;
+
+        @include tablet-up {
+            flex: 1;
+            min-height: auto;
+        }
+    }
+}

@@ -1,1 +1,30 @@
 @use '../abstracts' as *;
+
+.btn {
+    display: inline-block;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: 4px;
+    font-weight: 600;
+    @include transition;
+    border: 2px solid transparent;
+
+    &.btn-primary {
+        background-color: $primary-color;
+        color: white;
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+    }
+
+    &.btn-outline {
+        background-color: transparent;
+        border-color: $primary-color;
+        color: $primary-color;
+
+        &:hover {
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+}

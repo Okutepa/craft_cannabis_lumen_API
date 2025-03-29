@@ -13,6 +13,19 @@
 |
 */
 
+//matches localhost:8888/craft-cannabis/api/public/
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+// Products routes
+
+$router->get('/test', function () {
+    return 'Test route works!';
+});
+
+$router->get('/products', 'ProductController@index');
+$router->get('/products/{id}', 'ProductController@show');
+$router->post('/products', 'ProductController@store');
+$router->put('/products/{id}', 'ProductController@update');
+$router->delete('/products/{id}', 'ProductController@destroy');

@@ -1,0 +1,79 @@
+@use '../abstracts' as *;
+
+.crafting {
+    padding: $spacing-lg 0;
+
+    .crafting-main {
+        overflow: hidden;
+        margin-bottom: $spacing-lg;
+
+        h2 {
+            color: $text-color;
+            font-size: 1.8rem;
+            margin-bottom: $spacing-lg;
+        }
+
+        .crafting-main-image {
+            height: 320px;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: 50% 40%
+            }
+        }
+    }
+
+    .crafting-sub {
+        text-align: right;
+
+        .crafting-gallery {
+            display: flex;
+            gap: $spacing-md;
+            flex-wrap: nowrap;
+            /* Ensures images stack horizontally */
+            overflow-x: auto;
+            /* Enable scrolling only if needed */
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling on iOS */
+            scroll-snap-type: x mandatory;
+            /* Optional smooth snapping */
+            padding-bottom: $spacing-md;
+            margin-bottom: $spacing-md;
+
+            .gallery-item {
+                width: 276px;
+                height: 248px;
+                flex: 1 0 auto;
+                /* Adjust width dynamically */
+                min-width: 0;
+
+                /* Prevents width issues */
+                scroll-snap-align: start;
+
+
+                img {
+                    width: 100%;
+                    /* Fill the container */
+                    height: 100%;
+                    /* Fill the container */
+                    object-fit: cover;
+                    /* Crop images to fit while maintaining aspect ratio */
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .crafting-gallery {
+        overflow-x: hidden;
+        /* Disable scrolling when enough space */
+    }
+
+    // .gallery-item {
+    //     flex: 1 1 calc(33.33% - $spacing-md);
+    //     /* Show 3 images */
+    // }
+}

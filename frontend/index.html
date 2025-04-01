@@ -7,6 +7,7 @@
     <title>Craft Cannabis</title>
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
@@ -227,6 +228,36 @@
             </div>
         </section>
 
+        <section class="locations">
+            <div class="grid-con">
+                <div class="locations-main col-span-full">
+                    <h2>LOCATIONS</h2>
+                    <p>Find our premium cannabis at these select locations. Each store offers a curated experience with
+                        knowledgeable staff to guide your selection.</p>
+                </div>
+                <div class="map-container col-span-full">
+                    <div id="map" class="location-map"></div>
+
+                    <div class="store-details">
+                        <div class="store">
+                            <h3>Downtown Shop</h3>
+                            <p>420 Dundas St, London ON</p>
+                            <p>Monday-Saturday: 10am-9pm</p>
+                            <p>Sunday: 11am-6pm</p>
+                        </div>
+                        <div class="store">
+                            <h3>Westside Location</h3>
+                            <p>215 Oxford St, London ON</p>
+                            <p>Monday-Saturday: 10am-8pm</p>
+                            <p>Sunday: 12pm-5pm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
         <!-- Product Detail Modal -->
         <div class="product-modal" v-if="selectedProduct">
             <div class="modal-content">
@@ -270,6 +301,7 @@
 
     <!-- Scripts -->
     <script src="js/main.js" type="module"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
 </body>
 
 </html>

@@ -1,0 +1,108 @@
+// sass/components/_slider.scss
+@use '../abstracts' as *;
+
+// Slider pagination and controls
+.slider-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing-md;
+    gap: 8px;
+
+    .pagination-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba($primary-color, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.active {
+            background-color: $primary-color;
+            transform: scale(1.2);
+        }
+    }
+}
+
+.slider-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: white;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &.prev {
+        left: 10px;
+    }
+
+    &.next {
+        right: 10px;
+    }
+
+    // Hide arrows on desktop
+    @include desktop-up {
+        display: none;
+    }
+}
+
+.all-selection {
+    display: block;
+    margin: $spacing-lg auto 0;
+    padding: $spacing-sm $spacing-md;
+    background-color: $primary-color;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    max-width: 200px;
+    text-decoration: none;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+        text-decoration: none;
+    }
+}
+
+// Make scroll snap smoother on mobile
+.signature-cards,
+.growers-cards {
+    scroll-snap-type: x mandatory;
+
+    .card {
+        scroll-snap-align: center;
+    }
+
+    // Hide scrollbar but keep functionality
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+
+    // Adjust for desktop
+    @include desktop-up {
+        overflow-x: visible;
+        flex-wrap: wrap;
+
+        .card {
+            flex: 0 0 calc(33.33% - #{$spacing-md});
+        }
+    }
+}

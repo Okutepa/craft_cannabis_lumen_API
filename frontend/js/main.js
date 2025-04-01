@@ -1,3 +1,7 @@
+// Import components
+import initProductSliders from './components/productSlider.js';
+import initializeMap from './components/mapInitializer.js';
+
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,6 +26,9 @@ const app = new Vue({
         
         // Fetch products from API
         this.fetchProducts();
+        
+        // Initialize map after the page has loaded
+        window.addEventListener('load', initializeMap);
     },
     methods: {
         // Initialize GSAP animations for the hero section
@@ -89,6 +96,17 @@ const app = new Vue({
                 stagger: 0.2,
                 scrollTrigger: {
                     trigger: '.growers-cards',
+                    start: 'top 80%'
+                }
+            });
+            
+            // Location section title animation
+            gsap.from('.locations h2', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: '.locations',
                     start: 'top 80%'
                 }
             });

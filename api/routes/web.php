@@ -2,30 +2,23 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
-
-//matches localhost:8888/craft-cannabis/api/public/
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+// Health check route
+$router->get('/health', function () {
+    return response()->json([
+        'status' => 'ok', 
+        'message' => 'API is running'
+    ]);
 });
 
 // Products routes
-
-$router->get('/test', function () {
-    return 'Test route works!';
+$router->group(['prefix' => 'products'], function () use ($router) {
+    $router->get('/', 'ProductController@index');
+    $router->get('/{id}', 'ProductController@show');
+    $router->post('/', 'ProductController@store');
+    $router->put('/{id}', 'ProductController@update');
+    $router->delete('/{id}', 'ProductController@destroy');
 });
 
-$router->get('/products', 'ProductController@index');
-$router->get('/products/{id}', 'ProductController@show');
-$router->post('/products', 'ProductController@store');
-$router->put('/products/{id}', 'ProductController@update');
-$router->delete('/products/{id}', 'ProductController@destroy');
+// Newsletter subscriber routes
+$router->get('/subscribers', 'SubscriberController@index');
+$router->post('/subscribers', 'SubscriberController@subscribe');

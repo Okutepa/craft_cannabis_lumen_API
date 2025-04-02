@@ -256,6 +256,43 @@
             </div>
         </section>
 
+        <section class="newsletter">
+            <div class="grid-con">
+                <div class="newsletter-main col-span-full">
+                    <h2>JOIN OUR COMMUNITY</h2>
+                    <p>Subscribe to our newsletter for exclusive updates on new strains, special offers, and cannabis
+                        insights. Stay connected with the craft cannabis movement.</p>
+                </div>
+                <div class="newsletter-form-container col-span-full">
+                    <form id="newsletter-form" class="newsletter-form" onsubmit="return false;">
+                        <div class="input-group">
+                            <input type="email" id="subscriber-email" placeholder="Enter your email address" required>
+                            <button type="button" class="subscribe-btn">Subscribe</button>
+                        </div>
+                        <div class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscription Success Lightbox -->
+        <div id="subscription-lightbox" class="lightbox">
+            <div class="lightbox-content">
+                <span class="close-button">&times;</span>
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+                        <circle cx="12" cy="12" r="11" fill="#11261C" />
+                        <path fill="#FFFFFF"
+                            d="M9.55 18.2L3.65 12.3c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L9.55 15.38l9.19-9.19c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L9.55 18.2z" />
+                    </svg>
+                </div>
+                <h3>Thank You for Subscribing!</h3>
+                <p>You've successfully joined the Craft Cannabis community. Stay tuned for exclusive updates on new
+                    strains, special offers, and cannabis insights.</p>
+                <button class="btn btn-primary close-lightbox-btn">Close</button>
+            </div>
+        </div>
+
 
 
         <!-- Product Detail Modal -->

@@ -1,6 +1,7 @@
 // Import components
 import initProductSliders from './components/productSlider.js';
 import initializeMap from './components/mapInitializer.js';
+import initNewsletter from './components/newsletter.js';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -29,6 +30,9 @@ const app = new Vue({
         
         // Initialize map after the page has loaded
         window.addEventListener('load', initializeMap);
+        
+        // Initialize newsletter component
+        initNewsletter();
     },
     methods: {
         // Initialize GSAP animations for the hero section
@@ -107,6 +111,28 @@ const app = new Vue({
                 opacity: 0,
                 scrollTrigger: {
                     trigger: '.locations',
+                    start: 'top 80%'
+                }
+            });
+            
+            // Newsletter section animation
+            gsap.from('.newsletter h2', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: '.newsletter',
+                    start: 'top 80%'
+                }
+            });
+            
+            gsap.from('.newsletter-form', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: '.newsletter',
                     start: 'top 80%'
                 }
             });

@@ -148,7 +148,19 @@
                         </div>
                     </div>
                 </div>
-                <!-- Pagination will be added here by JavaScript -->
+
+                <!-- Vue-based pagination for slider -->
+                <div class="slider-pagination" v-if="signatureProducts.length > 1">
+                    <span class="pagination-dot" v-for="(product, index) in signatureProducts" :key="'sig-dot-' + index"
+                        :class="{ active: activeSlideIndex.signature === index }"
+                        @click="goToSlide('signature', index)"></span>
+                </div>
+
+                <!-- Slider controls -->
+                <button class="slider-control prev" @click="prevSlide('signature')"
+                    v-if="signatureProducts.length > 1">&#8592;</button>
+                <button class="slider-control next" @click="nextSlide('signature')"
+                    v-if="signatureProducts.length > 1">&#8594;</button>
             </div>
         </section>
 
@@ -224,7 +236,19 @@
                         </div>
                     </div>
                 </div>
-                <!-- Pagination will be added here by JavaScript -->
+
+                <!-- Vue-based pagination for slider -->
+                <div class="slider-pagination" v-if="growersProducts.length > 1">
+                    <span class="pagination-dot" v-for="(product, index) in growersProducts"
+                        :key="'growers-dot-' + index" :class="{ active: activeSlideIndex.growers === index }"
+                        @click="goToSlide('growers', index)"></span>
+                </div>
+
+                <!-- Slider controls -->
+                <button class="slider-control prev" @click="prevSlide('growers')"
+                    v-if="growersProducts.length > 1">&#8592;</button>
+                <button class="slider-control next" @click="nextSlide('growers')"
+                    v-if="growersProducts.length > 1">&#8594;</button>
             </div>
         </section>
 
@@ -239,23 +263,17 @@
                     <div id="map" class="location-map"></div>
 
                     <div class="store-details">
-                        <div class="store">
-                            <h3>Downtown Shop</h3>
-                            <p>420 Dundas St, London ON</p>
-                            <p>Monday-Saturday: 10am-9pm</p>
-                            <p>Sunday: 11am-6pm</p>
-                        </div>
-                        <div class="store">
-                            <h3>Westside Location</h3>
-                            <p>215 Oxford St, London ON</p>
-                            <p>Monday-Saturday: 10am-8pm</p>
-                            <p>Sunday: 12pm-5pm</p>
+                        <div class="store" v-for="(location, index) in mapLocations" :key="'location-' + index">
+                            <h3>{{ location.name }}</h3>
+                            <p>{{ location.address }}</p>
+                            <p v-html="location.hours.replace('\n', '<br>')"></p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Newsletter section with Vue integration -->
         <section class="newsletter">
             <div class="grid-con">
                 <div class="newsletter-main col-span-full">
@@ -264,21 +282,25 @@
                         insights. Stay connected with the craft cannabis movement.</p>
                 </div>
                 <div class="newsletter-form-container col-span-full">
-                    <form id="newsletter-form" class="newsletter-form" onsubmit="return false;">
+                    <form class="newsletter-form" @submit.prevent="handleNewsletterSubmit">
                         <div class="input-group">
-                            <input type="email" id="subscriber-email" placeholder="Enter your email address" required>
-                            <button type="button" class="subscribe-btn">Subscribe</button>
+                            <input type="email" v-model="newsletterEmail" placeholder="Enter your email address"
+                                required>
+                            <button type="button" class="subscribe-btn" @click="handleNewsletterSubmit"
+                                :disabled="newsletterSubmitting">
+                                {{ newsletterSubmitting ? 'Subscribing...' : 'Subscribe' }}
+                            </button>
                         </div>
-                        <div class="form-message"></div>
+                        <div class="form-message" v-if="newsletterMessage">{{ newsletterMessage }}</div>
                     </form>
                 </div>
             </div>
         </section>
 
-        <!-- Subscription Success Lightbox -->
-        <div id="subscription-lightbox" class="lightbox">
+        <!-- Update the Subscription Success Lightbox -->
+        <div class="lightbox" :class="{ active: showNewsletterLightbox }">
             <div class="lightbox-content">
-                <span class="close-button">&times;</span>
+                <span class="close-button" @click="closeNewsletterLightbox">&times;</span>
                 <div class="success-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
                         <circle cx="12" cy="12" r="11" fill="#11261C" />
@@ -289,11 +311,9 @@
                 <h3>Thank You for Subscribing!</h3>
                 <p>You've successfully joined the Craft Cannabis community. Stay tuned for exclusive updates on new
                     strains, special offers, and cannabis insights.</p>
-                <button class="btn btn-primary close-lightbox-btn">Close</button>
+                <button class="btn btn-primary" @click="closeNewsletterLightbox">Close</button>
             </div>
         </div>
-
-
 
         <!-- Product Detail Modal -->
         <div class="product-modal" v-if="selectedProduct">

@@ -4,7 +4,8 @@ gsap.registerPlugin(ScrollTrigger);
 // Initialize Vue instance
 const app = new Vue({
     el: '#app',
-    data: {
+    data: function() {
+        return {
         title: 'Craft Cannabis',
         products: [],
         signatureProducts: [],
@@ -14,13 +15,11 @@ const app = new Vue({
         error: null,
         apiUrl: 'http://localhost:8888/craft-cannabis/api/public',
         
-        // Newsletter component data
         newsletterEmail: '',
         newsletterMessage: '',
         newsletterSubmitting: false,
         showNewsletterLightbox: false,
         
-        // Map locations data
         mapLocations: [
             { 
                 name: 'Downtown Shop', 
@@ -43,6 +42,7 @@ const app = new Vue({
             signature: 0,
             growers: 0
         }
+    };
     },
     methods: {
         // ---- Newsletter Methods ----
@@ -119,6 +119,9 @@ const app = new Vue({
             const mapElement = document.getElementById('map');
             if (!mapElement) return;
             
+            // Add a loading indicator
+            mapElement.innerHTML = '<div class="map-loading">Loading map...</div>';
+
             try {
                 // Map styling to match your design (dark theme with green accents)
                 const mapStyles = [

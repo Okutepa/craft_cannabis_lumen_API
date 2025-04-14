@@ -15,8 +15,7 @@
 </head>
 
 <body>
-    <div id="app">
-        <!-- Navigation bar -->
+    <div id="app" v-cloak>
         <nav class="main-nav">
             <div class="nav-container">
                 <div class="nav-logo">
@@ -39,7 +38,6 @@
                     </div>
 
                     <div class="hero-image">
-                        <!-- <img src="images/hero.jpeg" alt=""> -->
                     </div>
                 </div>
             </div>
@@ -85,13 +83,11 @@
                     </p>
                 </div>
                 <div class="signature-cards col-span-full">
-                    <!-- Loading indicator -->
                     <div class="loading-indicator" v-if="loading">
                         <div class="spinner"></div>
                         <p>Loading products...</p>
                     </div>
 
-                    <!-- This section will be populated dynamically from the API -->
                     <div class="card" v-for="product in signatureProducts" :key="product.id">
                         <div class="card-img">
                             <img :src="product.media && product.media.length ? product.media[0].file_path : 'images/placeholder.jpg'"
@@ -173,13 +169,11 @@
                     </p>
                 </div>
                 <div class="growers-cards col-span-full">
-                    <!-- Loading indicator -->
                     <div class="loading-indicator" v-if="loading">
                         <div class="spinner"></div>
                         <p>Loading products...</p>
                     </div>
 
-                    <!-- This section will be populated dynamically from the API -->
                     <div class="card" v-for="product in growersProducts" :key="product.id">
                         <div class="card-img">
                             <img :src="product.media && product.media.length ? product.media[0].file_path : 'images/placeholder.jpg'"
@@ -208,7 +202,6 @@
                         </div>
                     </div>
 
-                    <!-- Fallback static cards if API fails -->
                     <div class="card" v-if="!loading && growersProducts.length === 0">
                         <div class="card-img">
                             <img src="images/soweto_burner.jpeg" alt="">
@@ -237,14 +230,12 @@
                     </div>
                 </div>
 
-                <!-- Vue-based pagination for slider -->
                 <div class="slider-pagination" v-if="growersProducts.length > 1">
                     <span class="pagination-dot" v-for="(product, index) in growersProducts"
                         :key="'growers-dot-' + index" :class="{ active: activeSlideIndex.growers === index }"
                         @click="goToSlide('growers', index)"></span>
                 </div>
 
-                <!-- Slider controls -->
                 <button class="slider-control prev" @click="prevSlide('growers')"
                     v-if="growersProducts.length > 1">&#8592;</button>
                 <button class="slider-control next" @click="nextSlide('growers')"
@@ -273,7 +264,6 @@
             </div>
         </section>
 
-        <!-- Newsletter section with Vue integration -->
         <section class="newsletter">
             <div class="grid-con">
                 <div class="newsletter-main col-span-full">
@@ -297,7 +287,8 @@
             </div>
         </section>
 
-        <!-- Update the Subscription Success Lightbox -->
+
+        <!-- succss message -->
         <div class="lightbox" :class="{ active: showNewsletterLightbox }">
             <div class="lightbox-content">
                 <span class="close-button" @click="closeNewsletterLightbox">&times;</span>
@@ -315,10 +306,39 @@
             </div>
         </div>
 
+
+        <footer>
+            <div class="grid-con">
+                <div class="footer-con col-span-full">
+                    <div class="footer-logo">
+                        <img src="images/weed-craft-logo.svg" alt="Craft Cannabis Logo">
+                    </div>
+
+                    <div class="col-span-full footer-add">
+                        <div class="footer-address">
+                            <p>470 Dundas St, London ON Canada</p>
+                        </div>
+
+                        <div class="footer-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+
+                        <div class="footer-social">
+                            <a href="#"><img src="images/facebook-icon.svg" alt="Facebook"></a>
+                            <a href="#"><img src="images/instagram-icon.svg" alt="Instagram"></a>
+                            <a href="#"><img src="images/twitter-icon.svg" alt="Twitter"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
         <!-- Product Detail Modal -->
         <div class="product-modal" v-if="selectedProduct">
             <div class="modal-content">
-                <span class="close-button" @click="closeProductDetails">&times;</span>
+                <span class="close-button" @click="closeProductDetails"><img src="images/close-btn.svg"
+                        alt="close-modal"></span>
 
                 <div class="grid-con">
                     <div class="col-span-full m-col-span-6 l-col-span-6 modal-image">
@@ -358,7 +378,8 @@
 
     <!-- Scripts -->
     <script src="js/main.js" type="module"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDctWB4DOWdZs1ON6SiPvaHDINwvFCTZfY&libraries=marker"></script>
 </body>
 
 </html>

@@ -16,6 +16,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            h1 {
+                font-size: 4rem;
+            }
         }
 
         .hero-image {
@@ -23,7 +27,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             height: 320px;
-            /* Default for mobile */
+            border-radius: 8px;
         }
     }
 }
@@ -44,7 +48,6 @@
 
             .hero-text {
                 flex: 1;
-                /* Takes half the width */
             }
 
             .hero-image {
@@ -59,8 +62,14 @@
 }
 
 @media screen and (min-width: 1200px) {
-    // .hero {
-    //     background-color: #D9D9D9;
+    .hero {
+        .hero-items {
+            .hero-text {
+                h1 {
+                    font-size: 5rem;
+                }
+            }
+        }
 
-    // }
+    }
 }

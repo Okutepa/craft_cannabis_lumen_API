@@ -38,7 +38,7 @@
         .location-map {
             height: 300px;
             width: 100%;
-            background-color: #2b231e; // Fallback color before map loads
+            background-color: #2b231e;
             position: relative;
 
             @include tablet-up {
@@ -85,4 +85,6 @@
             }
         }
     }
+
+
 }

@@ -1,6 +1,6 @@
 # Lumen dependencies
-backend/craft-cannabis-api/vendor/
-backend/craft-cannabis-api/composer.lock
+api/craft-cannabis-api/vendor/
+api/craft-cannabis-api/composer.lock
 
 # Node modules (if you add any in the frontend)
 frontend/node_modules/

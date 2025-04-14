@@ -1,5 +1,9 @@
-// sass/components/_modal.scss
 @use '../abstracts' as *;
+
+[v-cloak] {
+    display: none !important;
+}
+
 
 .product-modal {
     position: fixed;
@@ -22,6 +26,7 @@
         max-height: 90vh;
         overflow-y: auto;
         position: relative;
+        padding: $spacing-md;
 
         .modal-close {
             position: absolute;
@@ -108,6 +113,12 @@
                     color: $primary-color;
                 }
             }
+
+
+        }
+
+        .close-button {
+            margin-left: 15px;
         }
     }
 }

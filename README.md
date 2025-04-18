@@ -1,9 +1,5 @@
 # Craft Cannabis Website
 
-A premium cannabis e-commerce platform featuring signature strains and growers' selections with smooth GSAP animations and interactive product displays.
-
-![Craft Cannabis Website](images/weed-craft-logo.svg)
-
 ## Project Overview
 
 A modern e-commerce website showcasing artisanal cannabis products through an elegant, responsive interface. The site features GSAP-powered scroll animations, interactive product cards with horizontal scrolling, and a custom-styled Google Maps integration for store locations.

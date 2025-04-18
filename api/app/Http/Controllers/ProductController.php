@@ -11,7 +11,6 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            // Fetch all products with their media
             $products = Product::with('media')->get();
             
             return response()->json($products);

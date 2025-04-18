@@ -5,22 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Craft Cannabis</title>
-    <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/grid.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
-    <div id="app">
-        <!-- Navigation bar -->
+    <div id="app" v-cloak>
         <nav class="main-nav">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <a href="#">Shop</a>
+                    <a href="#">Craft Cannabis</a>
                 </div>
                 <div class="nav-actions">
                     <button class="btn btn-primary">Contact</button>
@@ -30,307 +27,72 @@
         </nav>
 
         <section class="hero">
-            <div class="grid-con" id="full-hero">
+            <div class="grid-con">
                 <div class="col-span-full hero-items">
                     <div class="hero-text">
                         <h1>WHERE CANNABIS MEETS CRAFT</h1>
                         <p>Premium organic, small-batch, meticulously handcrafted for perfection, designed to elevate
                             your cannabis experience.</p>
                     </div>
-
-                    <div class="hero-image">
-                        <!-- <img src="images/hero.jpeg" alt=""> -->
-                    </div>
+                    <div class="hero-image"></div>
                 </div>
             </div>
         </section>
 
-        <section class="crafting">
+        <section class="products">
             <div class="grid-con">
-                <div class="col-span-full crafting-main">
-                    <h2>THE ART OF CRAFTING CANNABIS</h2>
+                <div class="col-span-full">
+                    <h2>Our Products</h2>
+                    <p>Explore our curated selection of premium strains.</p>
 
-                    <div class="crafting-main-image">
-                        <img src="images/crafting-main.jpg" alt="Cannabis crafting process">
-                    </div>
-                </div>
-                <div class="col-span-full l-col-start-4 m-col-start-4 crafting-sub">
-                    <h3>EMERALD CRAFT ISN'T JUST WEED—IT'S WEED DONE RIGHT.</h3>
-
-                    <div class="crafting-gallery">
-                        <div class="gallery-item">
-                            <img src="images/crafting-1.jpg" alt="Cannabis crafting">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/crafting-2.jpg" alt="Cannabis preparation">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/crafting-3.jpg" alt="Cannabis quality control">
-                        </div>
-                    </div>
-
-                    <p class="crafting-description">Our artisans hand-trim every bud, roll every pre-roll, and blend
-                        every vape with precision</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="signature-strains">
-            <div class="grid-con">
-                <div class="signature-main col-span-full">
-                    <h2>Signature Strains</h2>
-                    <p>Every piece in our collection is a testament to craft, strains chosen for their beauty, potency,
-                        and soul. From hand-rolled pre-rolls to terpene-rich vapes, we elevate cannabis into an
-                        experience worth savouring. Discover the art in every puff.
-                    </p>
-                </div>
-                <div class="signature-cards col-span-full">
-                    <!-- Loading indicator -->
                     <div class="loading-indicator" v-if="loading">
                         <div class="spinner"></div>
                         <p>Loading products...</p>
                     </div>
 
-                    <!-- This section will be populated dynamically from the API -->
-                    <div class="card" v-for="product in signatureProducts" :key="product.id">
-                        <div class="card-img">
-                            <img :src="product.media && product.media.length ? product.media[0].file_path : 'images/placeholder.jpg'"
-                                :alt="product.name">
-                        </div>
-                        <div class="card-detais">
-                            <div class="cost-head">
-                                <h3>{{ product.name }}</h3>
-                            </div>
-                            <div class="cost-action">
-                                <div class="specifics">
-                                    <div class="percent elipse">
-                                        <p>{{ product.thc_percentage }}%</p>
-                                    </div>
-                                    <div class="weight elipse">
-                                        <p>{{ product.weight }}g</p>
-                                    </div>
-                                </div>
+                    <div class="error-message" v-if="error">{{ error }}</div>
 
-                                <div class="card-btn" @click="showProductDetails(product.id)">
-                                    <a href="#" @click.prevent>
-                                        <p>View Product</p>
-                                    </a>
+                    <div class="product-cards" v-if="!loading && !error">
+                        <div class="card" v-for="product in sortedProducts" :key="product.id">
+                            <div class="card-img">
+                                <img :src="product.media && product.media.length ? 'images/' + product.media[0].file_path : 'images/placeholder.jpg'"
+                                    :alt="product.name">
+                            </div>
+                            <div class="card-detais">
+                                <div class="cost-head">
+                                    <h3>{{ product.name }}</h3>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fallback static cards if API fails -->
-                    <div class="card" v-if="!loading && signatureProducts.length === 0">
-                        <div class="card-img">
-                            <img src="images/soweto_burner.jpeg" alt="">
-                        </div>
-                        <div class="card-detais">
-                            <div class="cost-head">
-                                <h3>Soweto Burner Preroll</h3>
-                            </div>
-                            <div class="cost-action">
-                                <div class="specifics">
-                                    <div class="percent elipse">
-                                        <p>19%</p>
+                                <div class="cost-action">
+                                    <div class="specifics">
+                                        <div class="elipse percent">
+                                            <p>{{ product.thc_percentage }}%</p>
+                                        </div>
+                                        <div class="elipse weight">
+                                            <p>{{ product.weight }}g</p>
+                                        </div>
                                     </div>
-                                    <div class="weight elipse">
-                                        <p>1g</p>
+                                    <div class="card-btn">
+                                        <button @click="fetchProductDetails(product.id)">View Details</button>
                                     </div>
                                 </div>
-
-                                <div class="card-btn">
-                                    <a href="#">
-                                        <p>View Product</p>
-                                    </a>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vue-based pagination for slider -->
-                <div class="slider-pagination" v-if="signatureProducts.length > 1">
-                    <span class="pagination-dot" v-for="(product, index) in signatureProducts" :key="'sig-dot-' + index"
-                        :class="{ active: activeSlideIndex.signature === index }"
-                        @click="goToSlide('signature', index)"></span>
-                </div>
-
-                <!-- Slider controls -->
-                <button class="slider-control prev" @click="prevSlide('signature')"
-                    v-if="signatureProducts.length > 1">&#8592;</button>
-                <button class="slider-control next" @click="nextSlide('signature')"
-                    v-if="signatureProducts.length > 1">&#8594;</button>
-            </div>
-        </section>
-
-        <section class="growers-selection">
-            <div class="grid-con">
-                <div class="selection-main col-span-full">
-                    <h2>Growers Selection</h2>
-                    <p>Straight from the field—our growers' hand-picked favorites, crafted with care. These rugged gems
-                        showcase the raw beauty of cannabis, selected by the hands that nurture it.
-                    </p>
-                </div>
-                <div class="growers-cards col-span-full">
-                    <!-- Loading indicator -->
-                    <div class="loading-indicator" v-if="loading">
-                        <div class="spinner"></div>
-                        <p>Loading products...</p>
-                    </div>
-
-                    <!-- This section will be populated dynamically from the API -->
-                    <div class="card" v-for="product in growersProducts" :key="product.id">
-                        <div class="card-img">
-                            <img :src="product.media && product.media.length ? product.media[0].file_path : 'images/placeholder.jpg'"
-                                :alt="product.name">
-                        </div>
-                        <div class="card-detais">
-                            <div class="cost-head">
-                                <h3>{{ product.name }}</h3>
-                            </div>
-                            <div class="cost-action">
-                                <div class="specifics">
-                                    <div class="percent elipse">
-                                        <p>{{ product.thc_percentage }}%</p>
-                                    </div>
-                                    <div class="weight elipse">
-                                        <p>{{ product.weight }}g</p>
-                                    </div>
-                                </div>
-
-                                <div class="card-btn" @click="showProductDetails(product.id)">
-                                    <a href="#" @click.prevent>
-                                        <p>View Product</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fallback static cards if API fails -->
-                    <div class="card" v-if="!loading && growersProducts.length === 0">
-                        <div class="card-img">
-                            <img src="images/soweto_burner.jpeg" alt="">
-                        </div>
-                        <div class="card-detais">
-                            <div class="cost-head">
-                                <h3>Soweto Burner Preroll</h3>
-                            </div>
-                            <div class="cost-action">
-                                <div class="specifics">
-                                    <div class="percent elipse">
-                                        <p>19%</p>
-                                    </div>
-                                    <div class="weight elipse">
-                                        <p>1g</p>
-                                    </div>
-                                </div>
-
-                                <div class="card-btn">
-                                    <a href="#">
-                                        <p>View Product</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vue-based pagination for slider -->
-                <div class="slider-pagination" v-if="growersProducts.length > 1">
-                    <span class="pagination-dot" v-for="(product, index) in growersProducts"
-                        :key="'growers-dot-' + index" :class="{ active: activeSlideIndex.growers === index }"
-                        @click="goToSlide('growers', index)"></span>
-                </div>
-
-                <!-- Slider controls -->
-                <button class="slider-control prev" @click="prevSlide('growers')"
-                    v-if="growersProducts.length > 1">&#8592;</button>
-                <button class="slider-control next" @click="nextSlide('growers')"
-                    v-if="growersProducts.length > 1">&#8594;</button>
-            </div>
-        </section>
-
-        <section class="locations">
-            <div class="grid-con">
-                <div class="locations-main col-span-full">
-                    <h2>LOCATIONS</h2>
-                    <p>Find our premium cannabis at these select locations. Each store offers a curated experience with
-                        knowledgeable staff to guide your selection.</p>
-                </div>
-                <div class="map-container col-span-full">
-                    <div id="map" class="location-map"></div>
-
-                    <div class="store-details">
-                        <div class="store" v-for="(location, index) in mapLocations" :key="'location-' + index">
-                            <h3>{{ location.name }}</h3>
-                            <p>{{ location.address }}</p>
-                            <p v-html="location.hours.replace('\n', '<br>')"></p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Newsletter section with Vue integration -->
-        <section class="newsletter">
-            <div class="grid-con">
-                <div class="newsletter-main col-span-full">
-                    <h2>JOIN OUR COMMUNITY</h2>
-                    <p>Subscribe to our newsletter for exclusive updates on new strains, special offers, and cannabis
-                        insights. Stay connected with the craft cannabis movement.</p>
-                </div>
-                <div class="newsletter-form-container col-span-full">
-                    <form class="newsletter-form" @submit.prevent="handleNewsletterSubmit">
-                        <div class="input-group">
-                            <input type="email" v-model="newsletterEmail" placeholder="Enter your email address"
-                                required>
-                            <button type="button" class="subscribe-btn" @click="handleNewsletterSubmit"
-                                :disabled="newsletterSubmitting">
-                                {{ newsletterSubmitting ? 'Subscribing...' : 'Subscribe' }}
-                            </button>
-                        </div>
-                        <div class="form-message" v-if="newsletterMessage">{{ newsletterMessage }}</div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Update the Subscription Success Lightbox -->
-        <div class="lightbox" :class="{ active: showNewsletterLightbox }">
-            <div class="lightbox-content">
-                <span class="close-button" @click="closeNewsletterLightbox">&times;</span>
-                <div class="success-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
-                        <circle cx="12" cy="12" r="11" fill="#11261C" />
-                        <path fill="#FFFFFF"
-                            d="M9.55 18.2L3.65 12.3c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L9.55 15.38l9.19-9.19c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L9.55 18.2z" />
-                    </svg>
-                </div>
-                <h3>Thank You for Subscribing!</h3>
-                <p>You've successfully joined the Craft Cannabis community. Stay tuned for exclusive updates on new
-                    strains, special offers, and cannabis insights.</p>
-                <button class="btn btn-primary" @click="closeNewsletterLightbox">Close</button>
-            </div>
-        </div>
-
-        <!-- Product Detail Modal -->
         <div class="product-modal" v-if="selectedProduct">
             <div class="modal-content">
-                <span class="close-button" @click="closeProductDetails">&times;</span>
-
+                <span class="close-button" @click="closeProductDetails">×</span>
                 <div class="grid-con">
                     <div class="col-span-full m-col-span-6 l-col-span-6 modal-image">
-                        <img v-if="selectedProduct.media && selectedProduct.media.length"
-                            :src="selectedProduct.media[0].file_path" :alt="selectedProduct.name"
-                            onerror="this.src='images/placeholder.jpg'">
+                        <img :src="selectedProduct.media && selectedProduct.media.length ? 'images/' + selectedProduct.media[0].file_path : 'images/placeholder.jpg'"
+                            :alt="selectedProduct.name">
                     </div>
-
                     <div class="col-span-full m-col-span-6 l-col-span-6 modal-details">
                         <h2>{{ selectedProduct.name }}</h2>
                         <p class="product-type">{{ selectedProduct.type }}</p>
-
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">THC</span>
@@ -341,11 +103,9 @@
                                 <span class="spec-value">{{ selectedProduct.weight }}g</span>
                             </div>
                         </div>
-
                         <div class="product-description">
                             <p>{{ selectedProduct.description }}</p>
                         </div>
-
                         <div class="product-action">
                             <div class="product-price">${{ selectedProduct.price }}</div>
                             <button class="btn btn-primary">Add to Cart</button>
@@ -354,11 +114,33 @@
                 </div>
             </div>
         </div>
+
+        <footer>
+            <div class="grid-con">
+                <div class="footer-con col-span-full">
+                    <div class="footer-logo">
+                        <img src="images/weed-craft-logo.svg" alt="Craft Cannabis Logo">
+                    </div>
+                    <div class="col-span-full footer-add">
+                        <div class="footer-address">
+                            <p>470 Dundas St, London ON Canada</p>
+                        </div>
+                        <div class="footer-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                        <div class="footer-social">
+                            <a href="#"><img src="images/facebook-icon.svg" alt="Facebook"></a>
+                            <a href="#"><img src="images/instagram-icon.svg" alt="Instagram"></a>
+                            <a href="#"><img src="images/twitter-icon.svg" alt="Twitter"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="js/main.js" type="module"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

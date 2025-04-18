@@ -2,40 +2,24 @@
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
     font-family: $font-family-heading;
-    font-weight: 700;
-    margin-bottom: $spacing-md;
     line-height: $line-height-heading;
 }
 
 h1 {
     font-size: $font-size-xxl;
-
-    @include tablet-up {
-        font-size: 2.5rem;
-    }
-
-    @include desktop-up {
-        font-size: 3rem;
-    }
 }
 
 h2 {
-    font-size: 1.75rem;
-
-    @include tablet-up {
-        font-size: 2rem;
-    }
+    font-size: $font-size-xl;
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: $font-size-lg;
 }
 
 p {
+    font-size: $font-size-base;
     margin-bottom: $spacing-md;
 }

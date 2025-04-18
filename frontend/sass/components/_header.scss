@@ -6,25 +6,27 @@
     z-index: 100;
     background-color: rgba($light-color, 0.9);
     padding: $spacing-md 0;
+}
 
-    .nav-container {
-        @include flex-between;
-        max-width: $container-width;
-        margin: 0 auto;
-        padding: 0 $spacing-md;
-    }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+}
 
-    .nav-logo {
-        font-size: $font-size-xl;
-        font-weight: bold;
+.nav-logo {
+    font-size: $font-size-xl;
+    font-weight: bold;
+}
 
-        a {
-            color: $primary-color;
-        }
-    }
+.nav-logo a {
+    color: $primary-color;
+}
 
-    .nav-actions {
-        display: flex;
-        gap: $spacing-sm;
-    }
+.nav-actions {
+    display: flex;
+    gap: $spacing-sm;
 }

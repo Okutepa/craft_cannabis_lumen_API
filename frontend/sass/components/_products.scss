@@ -1,0 +1,124 @@
+@use '../abstracts' as *;
+
+// Product section
+.products {
+    padding: $spacing-lg 0;
+}
+
+.products h2 {
+    margin-bottom: $spacing-sm;
+}
+
+// Product cards container
+.product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: $spacing-lg;
+}
+
+// Individual card styling
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+
+    // Fixed aspect ratio for images
+    .card-img {
+        width: 100%;
+        position: relative;
+        padding-bottom: 75%; // 4:3 aspect ratio
+        overflow: hidden;
+
+        img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+    }
+
+    // Consistent info area
+    .card-detais {
+        padding: 16px;
+        background: rgba($light-color, 0.5);
+        border: 1px solid rgba($primary-color, 0.2);
+        border-top: none;
+        border-radius: 0 0 12px 12px;
+        height: 90px; // Fixed height for consistency
+    }
+
+    // Product name
+    .cost-head h3 {
+        font-size: $font-size-lg;
+        margin-bottom: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    // Action area with specs and button
+    .cost-action {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    // Specs area (THC and weight)
+    .specifics {
+        display: flex;
+        gap: 10px;
+    }
+
+    // THC and weight circles
+    .elipse {
+        background-color: $primary-color;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color: white;
+
+        p {
+            margin: 0;
+            font-size: $font-size-sm;
+            font-weight: bold;
+        }
+    }
+
+    .weight {
+        background-color: white;
+        color: $primary-color;
+    }
+
+    // View details button
+    .card-btn button {
+        background-color: $primary-color;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: $font-size-sm;
+        border: none;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+}
+
+// Media queries for responsive layout
+@media (min-width: 768px) {
+    .card {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        width: calc(33.33% - 14px);
+    }
+}

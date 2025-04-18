@@ -1,86 +1,55 @@
 @use '../abstracts' as *;
 
+.footer {
+    background-color: $light-color;
+    padding: $spacing-lg 0;
+}
+
 .footer-con {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 72px 0;
+    text-align: center;
+}
 
-    &::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        bottom: 24px;
-        border: 2px solid $primary-color;
-    }
+.footer-logo img {
+    max-width: 150px;
+    margin-bottom: $spacing-md;
+}
 
-    .footer-logo {
-        margin-bottom: 42px;
-    }
+.footer-address p {
+    margin-bottom: $spacing-sm;
+}
 
-    .footer-add {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
+.footer-links {
+    margin-bottom: $spacing-sm;
+}
 
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 42px;
+.footer-links a {
+    margin: 0 $spacing-sm;
+}
 
-            a {
-                font-size: 16px;
-                color: $primary-color;
-                text-decoration: none;
-                transition: all 0.3s ease-in-out;
+.footer-social a {
+    margin: 0 $spacing-sm;
+}
 
-                &:hover {
-                    color: $secondary-color;
-                }
-            }
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 16px;
-
-            a {
-                font-size: 16px;
-                color: $primary-color;
-                text-decoration: none;
-                transition: all 0.3s ease-in-out;
-
-                &:hover {
-                    color: $secondary-color;
-                }
-            }
-        }
-    }
+.footer-social img {
+    width: 24px;
+    height: 24px;
 }
 
 @media (min-width: 768px) {
     .footer-con {
-        flex-direction: row;
+        display: flex;
         justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
 
-        .footer-logo {
-            height: 100%;
+    .footer-logo {
+        flex: 1;
+    }
 
-            img {
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-
-        .footer-add {
-            height: 100%;
-            align-items: flex-end;
-            gap: 42px;
-
-            .footer-links {
-                margin-bottom: 24px;
-            }
-        }
+    .footer-add {
+        flex: 2;
+        display: flex;
+        justify-content: space-between;
     }
 }

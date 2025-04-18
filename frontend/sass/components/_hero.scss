@@ -1,75 +1,47 @@
 @use '../abstracts' as *;
 
+
 .hero {
-    background-color: #D9D9D9;
-    padding-bottom: 72px;
-    padding-top: 72px;
+    background-color: $light-color;
+    padding: $spacing-lg 0;
+}
 
+.hero-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-text {
+    text-align: center;
+    margin-bottom: $spacing-lg;
+}
+
+.hero-text h1 {
+    margin-bottom: $spacing-md;
+}
+
+.hero-image {
+    background-image: url('../images/hero.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+    border-radius: 8px;
+}
+
+@media (min-width: 768px) {
     .hero-items {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-
-        .hero-text {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            h1 {
-                font-size: 4rem;
-            }
-        }
-
-        .hero-image {
-            background-image: url('../images/hero.jpeg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 320px;
-            border-radius: 8px;
-        }
+        flex-direction: row;
+        align-items: center;
     }
-}
 
-@media screen and (min-width: 768px) {
-
-    .hero {
-        background-color: #D9D9D9;
-        height: 800px;
-
-        #full-hero {
-            height: 100%;
-        }
-
-        .hero-items {
-            height: 100%;
-            flex-direction: row;
-
-            .hero-text {
-                flex: 1;
-            }
-
-            .hero-image {
-                flex: 1;
-                height: auto;
-                min-height: 100%;
-                background-size: cover;
-                overflow: hidden;
-            }
-        }
+    .hero-text {
+        flex: 1;
+        margin-bottom: 0;
+        padding-right: $spacing-lg;
     }
-}
 
-@media screen and (min-width: 1200px) {
-    .hero {
-        .hero-items {
-            .hero-text {
-                h1 {
-                    font-size: 5rem;
-                }
-            }
-        }
-
+    .hero-image {
+        flex: 1;
+        height: 400px;
     }
 }

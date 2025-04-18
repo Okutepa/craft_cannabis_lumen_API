@@ -1,4 +1,3 @@
-# Craft Cannabis Website
 
 ## Project Overview
 
@@ -35,13 +34,6 @@ A modern e-commerce website showcasing artisanal cannabis products through an el
 - **Grid System**: Custom responsive 12-column grid
 
 ## Installation
-
-### Prerequisites
-
-- Node.js (v12+)
-- MAMP, XAMPP, or similar local server
-- PHP 7.4+
-- Composer
 
 ### Setup Steps
 
@@ -89,25 +81,6 @@ apiUrl: 'http://localhost:8888/craft-cannabis/api/public'
 
 Update this URL if your local server uses a different port or path.
 
-### Google Maps API
-
-The Google Maps integration requires an API key, which is included in the index.html file:
-
-```html
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=marker"></script>
-```
-
-Replace `YOUR_API_KEY` with a valid Google Maps API key.
-
-## API Integration
-
-The website connects to a Lumen-based API for the following functionality:
-
-### Products Endpoint
-
-- **GET** `/products` - Returns all available products
-- Response includes: id, name, description, type, price, weight, thc_percentage, and media
-
 ## Responsive Design
 
 The website uses a custom grid system and responsive design principles:
@@ -119,7 +92,6 @@ The website uses a custom grid system and responsive design principles:
   - Large: 1024px and above
 - **Responsive Components**: All components adapt to different screen sizes
 - **Flexible Sliders**: Product cards horizontally scroll on mobile, grid on desktop
-
 
 ## Credits
 

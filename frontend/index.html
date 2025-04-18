@@ -7,7 +7,7 @@
     <title>Craft Cannabis</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/grid.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 </head>
@@ -53,7 +53,7 @@
                     <div class="error-message" v-if="error">{{ error }}</div>
 
                     <div class="product-cards" v-if="!loading && !error">
-                        <div class="card" v-for="product in sortedProducts" :key="product.id">
+                        <div class="card" v-for="product in displayedProducts" :key="product.id">
                             <div class="card-img">
                                 <img :src="product.media && product.media.length ? 'images/' + product.media[0].file_path : 'images/placeholder.jpg'"
                                     :alt="product.name">
@@ -78,13 +78,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="view-more-container" v-if="hasMoreProducts">
+                        <button class="view-more-btn" @click="loadMoreProducts">View More</button>
+                    </div>
                 </div>
             </div>
         </section>
 
         <div class="product-modal" v-if="selectedProduct">
             <div class="modal-content">
-                <span class="close-button" @click="closeProductDetails">×</span>
+                <span class="close-button" @click="closeProductDetails"><img src="images/close-btn.svg"
+                        alt="close button"></span>
                 <div class="grid-con">
                     <div class="col-span-full m-col-span-6 l-col-span-6 modal-image">
                         <img :src="selectedProduct.media && selectedProduct.media.length ? 'images/' + selectedProduct.media[0].file_path : 'images/placeholder.jpg'"
@@ -140,7 +145,7 @@
         </footer>
     </div>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

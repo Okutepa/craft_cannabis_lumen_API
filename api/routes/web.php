@@ -2,6 +2,14 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+$router->get('/', function () use ($router) {
+    return response()->json([
+        'status' => 'ok',
+        'message' => 'Craft Cannabis API',
+        'version' => '1.0',
+    ]);
+});
+
 // Health check route
 $router->get('/health', function () {
     return response()->json([

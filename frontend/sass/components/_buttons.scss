@@ -28,3 +28,24 @@
     background-color: $primary-color;
     color: white;
 }
+
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    margin: $spacing-lg 0;
+}
+
+.view-more-btn {
+    background-color: $primary-color;
+    color: white;
+    padding: $spacing-md $spacing-lg;
+    border-radius: 8px;
+    font-size: $font-size-base;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+    }
+}

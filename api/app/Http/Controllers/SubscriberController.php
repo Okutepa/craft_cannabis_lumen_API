@@ -18,12 +18,10 @@ class SubscriberController extends Controller
     public function subscribe(Request $request)
     {
         try {
-            // Validate the email
             $this->validate($request, [
                 'email' => 'required|email|max:255|unique:subscribers,email'
             ]);
             
-            // Create a new subscriber
             $subscriber = Subscriber::create([
                 'email' => $request->email
             ]);

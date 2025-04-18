@@ -1,3 +1,4 @@
+
 ## Project Overview
 
 A modern e-commerce website showcasing artisanal cannabis products through an elegant, responsive interface. The site features GSAP-powered scroll animations, interactive product cards with horizontal scrolling, and a custom-styled Google Maps integration for store locations.
@@ -9,7 +10,6 @@ A modern e-commerce website showcasing artisanal cannabis products through an el
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [API Integration](#api-integration)
-- [Animation System](#animation-system)
 - [Responsive Design](#responsive-design)
 
 ## Features
@@ -80,11 +80,6 @@ apiUrl: 'http://localhost:8888/craft-cannabis/api/public'
 ```
 
 Update this URL if your local server uses a different port or path.
-
-
-## Animation System
-
-The website uses GSAP and ScrollTrigger for advanced animations:
 
 ## Responsive Design
 
